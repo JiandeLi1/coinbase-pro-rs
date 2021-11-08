@@ -165,7 +165,11 @@ pub enum Ticker {
         time: DateTime,
         product_id: String,
         #[serde(deserialize_with = "f64_from_string")]
-        price: f64,
+        open_24h: f64,
+        #[serde(deserialize_with = "f64_from_string")]
+        high_24h: f64,
+        #[serde(deserialize_with = "f64_from_string")]
+        low_24h: f64,
         side: super::reqs::OrderSide,
         #[serde(deserialize_with = "f64_from_string")]
         last_size: f64,
@@ -222,6 +226,28 @@ impl Ticker {
         match self {
             Ticker::Full { best_ask, .. } => Some(best_ask),
             Ticker::Empty { .. } => None,
+        }
+    }
+
+    //The thing I add
+    pub fn open_24h(&self) -> &f64 {
+        match self {
+            Ticker::Full { open_24h, .. } => open_24h,
+            Ticker::Empty { open_24h, .. } => open_24h,
+        }
+    }
+
+    pub fn high_24h(&self) -> &f64 {
+        match self {
+            Ticker::Full { high_24h, .. } => high_24h,
+            Ticker::Empty { high_24h, .. } => high_24h,
+        }
+    }
+
+    pub fn low_24h(&self) -> &f64 {
+        match self {
+            Ticker::Full { low_24h, .. } => low_24h,
+            Ticker::Empty { low_24h, .. } => low_24h,
         }
     }
 }

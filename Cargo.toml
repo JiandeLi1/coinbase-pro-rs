@@ -34,6 +34,7 @@ tokio = { version = "1.0.2", features = ["full"] }
 tokio-tungstenite = { version = "0.13.0", features = ["tls"] }
 url = "2.1.0"
 uuid = { version = "0.8.1", features = [ "serde", "v4" ] }
+openssl = { version = "0.10.38", features = ["vendored"] }
 
 [dev-dependencies]
 serial_test = "0.5.1"
